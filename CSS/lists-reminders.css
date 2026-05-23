@@ -1,0 +1,1439 @@
+/* ============================================================
+   LISTS & REMINDERS — Styles
+   Append this to styles.css or link as separate stylesheet
+   ============================================================ */
+
+/* ── Screens ─────────────────────────────────────────── */
+/* IMPORTANT: Do NOT set display here — .screen rules in styles.css
+   handle display:none / display:flex. We only add layout properties
+   that apply when the screen IS active (i.e. when .screen.active
+   kicks in and sets display:flex already). */
+#screen-lists.active,
+#screen-reminders.active {
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+}
+
+/* ── Lists toolbar ───────────────────────────────────── */
+.lists-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 14px 20px 12px;
+    border-bottom: 1px solid var(--border-subtle);
+    flex-shrink: 0;
+    flex-wrap: wrap;
+    min-height: 56px;
+}
+
+.lists-filter-tabs {
+    display: flex;
+    gap: 4px;
+    background: var(--bg-surface2);
+    padding: 3px;
+    border-radius: var(--radius-sm);
+    flex-wrap: nowrap;
+    overflow-x: auto;
+}
+
+#lists-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 16px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* ── Stats bar (shared) ──────────────────────────────── */
+.lr-stats-bar {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 14px 20px;
+    margin-bottom: 4px;
+}
+
+.lr-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    gap: 2px;
+}
+
+.lr-stat-num {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    color: var(--text-primary);
+}
+
+.lr-stat-lbl {
+    font-size: 11px;
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+}
+
+.lr-stat-div {
+    width: 1px;
+    height: 32px;
+    background: var(--border);
+    flex-shrink: 0;
+}
+
+/* ── List card ───────────────────────────────────────── */
+.lr-card {
+    display: flex;
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    /* No overflow:hidden — la tarjeta debe crecer verticalmente
+       para mostrar todos sus elementos sin recorte */
+    cursor: pointer;
+    transition: box-shadow var(--transition), transform var(--transition), border-color var(--transition);
+    position: relative;
+}
+
+/* La barra de color lateral sí necesita border-radius propio */
+.lr-card .lr-card-color-bar {
+    border-radius: var(--radius-lg) 0 0 var(--radius-lg);
+}
+
+.lr-card:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-1px);
+    border-color: var(--accent);
+}
+
+.lr-card-color-bar {
+    width: 4px;
+    flex-shrink: 0;
+}
+
+.lr-card-main {
+    flex: 1;
+    padding: 14px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-width: 0;
+}
+
+.lr-card-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.lr-card-type-icon {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+}
+
+.lr-card-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-primary);
+    flex: 1;
+    min-width: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.lr-card-actions {
+    display: flex;
+    gap: 4px;
+    opacity: 0;
+    transition: opacity var(--transition);
+}
+
+.lr-card:hover .lr-card-actions {
+    opacity: 1;
+}
+
+.lr-icon-btn {
+    width: 26px;
+    height: 26px;
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    background: var(--bg-surface2);
+    transition: background var(--transition), color var(--transition);
+}
+
+.lr-icon-btn:hover {
+    background: var(--accent-soft);
+    color: var(--accent);
+}
+
+.lr-icon-btn.danger:hover {
+    background: var(--red-soft);
+    color: var(--red);
+}
+
+/* ── Badges ──────────────────────────────────────────── */
+.lr-card-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    align-items: center;
+}
+
+.lr-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 2px 8px;
+    border-radius: 99px;
+    font-size: 11px;
+    font-weight: 500;
+    background: var(--bg-surface2);
+    color: var(--text-secondary);
+}
+
+.lr-badge-sm {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    padding: 1px 6px;
+    border-radius: 99px;
+    font-size: 10px;
+    background: var(--bg-surface3);
+    color: var(--text-tertiary);
+}
+
+/* ── Progress ────────────────────────────────────────── */
+.lr-card-progress {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.lr-card-progress-bar {
+    flex: 1;
+    height: 4px;
+    background: var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.lr-card-progress-fill {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 0.5s ease;
+}
+
+.lr-card-progress-lbl {
+    font-size: 11px;
+    color: var(--text-tertiary);
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+/* ── Preview items ───────────────────────────────────── */
+.lr-card-preview {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.lr-card-preview-item {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 12.5px;
+    color: var(--text-secondary);
+    transition: opacity var(--transition);
+}
+
+.lr-card-preview-item.done {
+    opacity: 0.5;
+    text-decoration: line-through;
+}
+
+.lr-mini-check {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 1.5px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.lr-mini-check.checked {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: white;
+}
+
+.lr-card-more {
+    font-size: 11px;
+    color: var(--text-tertiary);
+    padding-left: 21px;
+    font-style: italic;
+}
+
+/* ── Empty state ─────────────────────────────────────── */
+.lr-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 20px;
+    text-align: center;
+    color: var(--text-secondary);
+    gap: 8px;
+}
+
+.lr-empty-icon {
+    font-size: 40px;
+    margin-bottom: 4px;
+}
+
+.lr-empty h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.lr-empty p {
+    font-size: 13px;
+    max-width: 280px;
+    line-height: 1.5;
+}
+
+/* ── Detail modal ────────────────────────────────────── */
+.lr-detail-overlay {
+    z-index: 1000;
+}
+
+.lr-detail-modal {
+    max-width: 560px !important;
+    width: 100% !important;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+}
+
+.lr-detail-color-band {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+}
+
+.lr-detail-title-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+    min-width: 0;
+}
+
+.lr-detail-type-icon {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+}
+
+.lr-detail-body {
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.lr-detail-event-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 6px 12px;
+    background: var(--bg-surface2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    font-size: 12.5px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: background var(--transition);
+}
+
+.lr-detail-event-chip:hover {
+    background: var(--accent-soft);
+    color: var(--accent);
+}
+
+.lr-detail-progress {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.lr-detail-progress-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12.5px;
+    color: var(--text-secondary);
+}
+
+.lr-detail-progress-track {
+    height: 6px;
+    background: var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.lr-detail-progress-fill {
+    height: 100%;
+    border-radius: 6px;
+    transition: width 0.5s ease;
+}
+
+/* ── Price summary ───────────────────────────────────── */
+.lr-detail-price-summary {
+    background: var(--bg-surface2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 10px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.lr-price-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    color: var(--text-secondary);
+}
+
+.lr-price-row strong {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+/* ── Detail items ────────────────────────────────────── */
+.lr-detail-items {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.lr-detail-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 9px 10px;
+    border-radius: var(--radius-sm);
+    background: var(--bg-surface2);
+    border: 1px solid var(--border-subtle);
+    transition: opacity var(--transition), background var(--transition);
+}
+
+.lr-detail-item:hover {
+    background: var(--bg-surface3);
+}
+
+.lr-detail-item.done {
+    opacity: 0.55;
+}
+
+.lr-detail-item.done .lr-item-text {
+    text-decoration: line-through;
+    color: var(--text-tertiary);
+}
+
+.lr-check-btn {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 1.5px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: background var(--transition), border-color var(--transition), color var(--transition);
+    cursor: pointer;
+    margin-top: 1px;
+}
+
+.lr-check-btn.checked {
+    background: var(--chk-color, var(--accent));
+    border-color: var(--chk-color, var(--accent));
+    color: #fff;
+}
+
+.lr-check-btn:hover:not(.checked) {
+    border-color: var(--accent);
+}
+
+.lr-item-content {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.lr-item-text {
+    font-size: 13.5px;
+    color: var(--text-primary);
+    line-height: 1.4;
+}
+
+.lr-item-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+}
+
+.lr-item-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    padding: 1px 7px;
+    border-radius: 99px;
+    font-size: 11px;
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+}
+
+.lr-item-del {
+    width: 22px;
+    height: 22px;
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-tertiary);
+    opacity: 0;
+    transition: opacity var(--transition), color var(--transition);
+    flex-shrink: 0;
+}
+
+.lr-detail-item:hover .lr-item-del {
+    opacity: 1;
+}
+
+.lr-item-del:hover {
+    color: var(--red);
+}
+
+.lr-empty-items {
+    text-align: center;
+    color: var(--text-tertiary);
+    font-size: 13px;
+    padding: 20px;
+}
+
+/* ── Add item form ───────────────────────────────────── */
+.lr-add-item-form {
+    border-top: 1px solid var(--border-subtle);
+    padding-top: 10px;
+}
+
+.lr-add-row {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+}
+
+.lr-add-text {
+    flex: 1;
+    background: var(--bg-surface2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 7px 10px;
+    font-size: 13.5px;
+}
+
+.lr-add-small {
+    background: var(--bg-surface2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 7px 8px;
+    font-size: 13px;
+    flex-shrink: 0;
+}
+
+.lr-add-text:focus,
+.lr-add-small:focus {
+    border-color: var(--accent);
+    outline: none;
+}
+
+/* ── Type selector grid ──────────────────────────────── */
+.lr-type-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 8px;
+    margin-top: 4px;
+}
+
+.lr-type-card {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 10px 12px;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: border-color var(--transition), background var(--transition), box-shadow var(--transition);
+    background: var(--bg-surface2);
+}
+
+.lr-type-card:hover {
+    border-color: var(--accent);
+    background: var(--accent-soft);
+}
+
+.lr-type-card.selected {
+    border-color: var(--accent);
+    background: var(--accent-soft);
+    box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+.lr-type-card-icon {
+    display: flex;
+    align-items: center;
+}
+
+.lr-type-card-label {
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.lr-type-card-desc {
+    font-size: 11px;
+    color: var(--text-tertiary);
+    line-height: 1.4;
+}
+
+/* ── Scope radio ─────────────────────────────────────── */
+.lr-scope-options {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.lr-radio-opt {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 8px 12px;
+    border-radius: var(--radius-sm);
+    border: 1.5px solid var(--border);
+    cursor: pointer;
+    font-size: 13px;
+    color: var(--text-secondary);
+    transition: border-color var(--transition), background var(--transition);
+}
+
+.lr-radio-opt:hover,
+.lr-radio-opt.active {
+    border-color: var(--accent);
+    background: var(--accent-soft);
+    color: var(--text-primary);
+}
+
+.lr-radio-opt input {
+    margin-top: 2px;
+    accent-color: var(--accent);
+}
+
+/* ============================================================
+   REMINDERS
+   ============================================================ */
+
+/* ── Layout ──────────────────────────────────────────── */
+.reminders-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 14px 20px 12px;
+    border-bottom: 1px solid var(--border-subtle);
+    flex-shrink: 0;
+    flex-wrap: wrap;
+    min-height: 56px;
+}
+
+/* Wide screens: hide the main-toolbar "Nuevo recordatorio" button;
+   the button inside each chat header is sufficient */
+.reminders-toolbar .btn-primary {
+    display: none;
+}
+
+/* Narrow/medium: show main-toolbar button (right-aligned), hide chat-header button */
+@media (max-width: 700px) {
+    .reminders-toolbar .btn-primary {
+        display: inline-flex;
+        margin-left: auto;
+    }
+
+    .rmdr-send-btn {
+        display: none !important;
+    }
+}
+
+.reminders-toolbar-desc {
+    font-size: 13px;
+    color: var(--text-secondary);
+    flex: 1;
+    min-width: 0;
+}
+
+.rmdr-layout {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+    min-height: 0;
+}
+
+/* ── Contacts sidebar ────────────────────────────────── */
+.rmdr-contacts {
+    width: 260px;
+    flex-shrink: 0;
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background: var(--bg-surface);
+}
+
+.rmdr-contacts-header {
+    padding: 12px 16px 8px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    color: var(--text-tertiary);
+    flex-shrink: 0;
+}
+
+.rmdr-contact-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    cursor: pointer;
+    transition: background var(--transition);
+    border-left: 3px solid transparent;
+    position: relative;
+}
+
+.rmdr-contact-item:hover {
+    background: var(--bg-surface2);
+}
+
+.rmdr-contact-item.active {
+    background: var(--accent-soft);
+    border-left-color: var(--accent);
+}
+
+.rmdr-contact-avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 600;
+    flex-shrink: 0;
+    position: relative;
+}
+
+.rmdr-online-dot {
+    position: absolute;
+    bottom: 1px;
+    right: 1px;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #22c55e;
+    border: 1.5px solid var(--bg-surface);
+}
+
+.rmdr-online-dot.offline {
+    background: var(--text-tertiary);
+}
+
+.rmdr-contact-info {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.rmdr-contact-name {
+    font-size: 13.5px;
+    font-weight: 500;
+    color: var(--text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.rmdr-contact-preview {
+    font-size: 11.5px;
+    color: var(--text-tertiary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.rmdr-contact-time {
+    font-size: 10.5px;
+    color: var(--text-tertiary);
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.rmdr-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 18px;
+    height: 18px;
+    border-radius: 99px;
+    background: var(--accent);
+    color: var(--text-inverse);
+    font-size: 10px;
+    font-weight: 700;
+    padding: 0 4px;
+    flex-shrink: 0;
+}
+
+/* ── Chat area ───────────────────────────────────────── */
+.rmdr-chat-area {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background: var(--bg-surface2);
+    min-width: 0;
+}
+
+.rmdr-chat-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 20px;
+    background: var(--bg-surface);
+    border-bottom: 1px solid var(--border);
+    flex-shrink: 0;
+}
+
+.rmdr-chat-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 600;
+    flex-shrink: 0;
+}
+
+.rmdr-chat-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.rmdr-chat-status {
+    font-size: 11.5px;
+    color: var(--text-tertiary);
+}
+
+.rmdr-send-btn {
+    font-size: 12.5px;
+    padding: 6px 12px;
+}
+
+.rmdr-messages-scroll {
+    flex: 1;
+    overflow-y: auto;
+    padding: 16px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.rmdr-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    text-align: center;
+    color: var(--text-secondary);
+    gap: 6px;
+    font-size: 13px;
+}
+
+/* ── Reminder bubbles (chat style) ───────────────────── */
+.rmdr-bubble-wrap {
+    display: flex;
+    align-items: flex-end;
+    gap: 8px;
+}
+
+.rmdr-bubble-wrap.sent {
+    flex-direction: row-reverse;
+}
+
+.rmdr-bubble-avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.rmdr-bubble-avatar.me {
+    background: var(--accent-soft);
+    color: var(--accent);
+}
+
+.rmdr-bubble {
+    max-width: 68%;
+    padding: 10px 14px;
+    border-radius: var(--radius-md);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    box-shadow: var(--shadow-sm);
+    animation: bubbleIn 0.2s ease;
+}
+
+@keyframes bubbleIn {
+    from {
+        opacity: 0;
+        transform: translateY(6px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.rmdr-bubble.received {
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-bottom-left-radius: 4px;
+}
+
+.rmdr-bubble.sent {
+    background: var(--accent-soft);
+    border: 1px solid var(--accent);
+    border-bottom-right-radius: 4px;
+}
+
+.rmdr-bubble-sender {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--accent);
+}
+
+.rmdr-bubble-title {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--text-tertiary);
+}
+
+.rmdr-bubble-desc {
+    font-size: 13.5px;
+    color: var(--text-primary);
+    line-height: 1.5;
+}
+
+.rmdr-bubble-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11.5px;
+    color: var(--accent);
+    background: var(--accent-soft);
+    padding: 4px 8px;
+    border-radius: 99px;
+    cursor: pointer;
+    transition: opacity var(--transition);
+    font-weight: 500;
+}
+
+.rmdr-bubble-link:hover {
+    opacity: 0.8;
+}
+
+.rmdr-bubble-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.rmdr-bubble-time {
+    font-size: 10.5px;
+    color: var(--text-tertiary);
+}
+
+.rmdr-del-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    border-radius: var(--radius-sm);
+    color: var(--text-tertiary);
+    opacity: 0;
+    transition: opacity var(--transition), color var(--transition);
+}
+
+.rmdr-bubble:hover .rmdr-del-btn,
+.rmdr-own-card:hover .rmdr-del-btn {
+    opacity: 1;
+}
+
+.rmdr-del-btn:hover {
+    color: var(--red);
+}
+
+/* ── Own reminder cards ──────────────────────────────── */
+.rmdr-own-card {
+    display: flex;
+    gap: 12px;
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 12px 14px;
+    box-shadow: var(--shadow-sm);
+    animation: bubbleIn 0.2s ease;
+}
+
+.rmdr-own-icon {
+    font-size: 20px;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.rmdr-own-body {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.rmdr-own-title {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--text-tertiary);
+}
+
+.rmdr-own-desc {
+    font-size: 13.5px;
+    color: var(--text-primary);
+    line-height: 1.5;
+}
+
+.rmdr-own-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+/* ── Create reminder modal ───────────────────────────── */
+.rmdr-modal-recipient {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 14px;
+    background: var(--bg-surface2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    margin-bottom: 14px;
+}
+
+.rmdr-modal-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.rmdr-link-section {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.rmdr-link-title {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+}
+
+/* ── Event popup extras ──────────────────────────────── */
+.event-popup-extras {
+    border-top: 1px solid var(--border-subtle);
+    padding-top: 8px;
+    margin-top: 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.evp-extra-section {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.evp-extra-label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 10.5px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    color: var(--text-tertiary);
+}
+
+.evp-extra-chip {
+    font-size: 11.5px;
+    color: var(--text-secondary);
+    padding: 4px 6px;
+    border-radius: var(--radius-sm);
+    background: var(--bg-surface2);
+    cursor: pointer;
+    transition: background var(--transition), color var(--transition);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.evp-extra-chip:hover {
+    background: var(--accent-soft);
+    color: var(--accent);
+}
+
+.evp-add-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 11px;
+    color: var(--accent);
+    padding: 3px 6px;
+    border-radius: var(--radius-sm);
+    border: 1px dashed var(--accent);
+    transition: background var(--transition);
+    cursor: pointer;
+    align-self: flex-start;
+}
+
+.evp-add-btn:hover {
+    background: var(--accent-soft);
+}
+
+/* ── Event detail modal sections ─────────────────────── */
+.evd-section {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.evd-section-label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    color: var(--text-tertiary);
+}
+
+.evd-section-body {
+    padding-left: 2px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.evd-linked-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 7px;
+    padding: 7px 10px;
+    background: var(--bg-surface2);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-sm);
+    font-size: 12.5px;
+}
+
+/* ── Goal detail modal ───────────────────────────────── */
+.goal-detail-overlay {
+    z-index: 1000;
+}
+
+.goal-detail-modal {
+    max-width: 560px !important;
+    width: 100% !important;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+}
+
+.goal-detail-color-band {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+}
+
+.goal-detail-body {
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.gd-section {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.gd-section-label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 5px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    color: var(--text-tertiary);
+}
+
+.gd-section-label-left {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.gd-section-body {
+    padding-left: 2px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.gd-linked-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 7px;
+    padding: 7px 10px;
+    background: var(--bg-surface2);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-sm);
+    font-size: 12.5px;
+}
+
+.gd-milestone-item {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 5px 0;
+    font-size: 13px;
+    color: var(--text-secondary);
+}
+
+.gd-milestone-item.done {
+    opacity: 0.5;
+    text-decoration: line-through;
+}
+
+.gd-ownership-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 10px;
+    border-radius: 99px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.gd-ownership-badge.own {
+    background: var(--accent-soft);
+    color: var(--accent);
+}
+
+.gd-ownership-badge.shared {
+    background: var(--bg-surface2);
+    color: var(--text-secondary);
+    border: 1px solid var(--border);
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+/* ── Medium screens: contacts become a horizontal scrollable row ── */
+@media (max-width: 900px) {
+    .rmdr-layout {
+        flex-direction: column;
+    }
+
+    .rmdr-contacts {
+        width: 100%;
+        max-width: 100%;
+        flex-direction: row;
+        /* contacts list items go left to right */
+        overflow-x: auto;
+        overflow-y: hidden;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+        flex-shrink: 0;
+        /* limit height so it doesn't take too much vertical space */
+        max-height: 100px;
+    }
+
+    .rmdr-contacts-header {
+        display: none;
+        /* hide "Conversaciones" label to save space */
+    }
+
+    .rmdr-contact-item {
+        flex-direction: column;
+        align-items: center;
+        padding: 8px 12px;
+        border-left: none;
+        border-bottom: 3px solid transparent;
+        white-space: nowrap;
+        flex-shrink: 0;
+        min-width: 72px;
+        gap: 4px;
+    }
+
+    .rmdr-contact-item.active {
+        border-bottom-color: var(--accent);
+        border-left-color: transparent;
+    }
+
+    .rmdr-contact-info {
+        align-items: center;
+        text-align: center;
+    }
+
+    .rmdr-contact-preview,
+    .rmdr-contact-time {
+        display: none;
+        /* hide preview text in compact row mode */
+    }
+
+    .rmdr-contact-name {
+        font-size: 11.5px;
+        max-width: 72px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .rmdr-contact-avatar {
+        width: 34px;
+        height: 34px;
+        font-size: 12px;
+    }
+
+    .rmdr-badge {
+        position: absolute;
+        top: 4px;
+        right: 4px;
+    }
+
+    .rmdr-chat-area {
+        flex: 1;
+        min-height: 0;
+        display: flex !important;
+        /* always show chat on medium+ screens */
+    }
+}
+
+/* ── Small screens: same layout as medium, but hide chat-header send button ── */
+@media (max-width: 768px) {
+    .lr-type-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .lr-detail-modal {
+        max-height: 95vh !important;
+    }
+
+    .rmdr-bubble {
+        max-width: 90%;
+    }
+
+    #lists-body {
+        padding: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .lr-add-row {
+        flex-wrap: wrap;
+    }
+
+    .lr-add-small {
+        width: 80px !important;
+    }
+
+    .lr-type-grid {
+        grid-template-columns: 1fr;
+    }
+}

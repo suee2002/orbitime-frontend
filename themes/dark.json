@@ -1,0 +1,237 @@
+{
+    "_comment": "Paleta de colores para MODO OSCURO — 21 temas. Solo se modifican los elementos de diseño: accent, accent-soft, accent-hover, accent-text y now-line. Los colores semánticos (verde=en línea/prioridad-baja, rojo=error/peligro, amarillo=prioridad-media) nunca cambian.",
+    "themes": [
+        {
+            "id": "green",
+            "label": "Verde esmeralda",
+            "default": true,
+            "colors": {
+                "accent": "#4ade80",
+                "accent-soft": "#1a2e20",
+                "accent-hover": "#6ee7a0",
+                "accent-text": "#4ade80",
+                "now-line": "#f87171"
+            }
+        },
+        {
+            "id": "teal",
+            "label": "Verde azulado",
+            "colors": {
+                "accent": "#2dd4bf",
+                "accent-soft": "#0f2926",
+                "accent-hover": "#5eead4",
+                "accent-text": "#2dd4bf",
+                "now-line": "#34d399"
+            }
+        },
+        {
+            "id": "sage",
+            "label": "Verde salvia",
+            "colors": {
+                "accent": "#86efac",
+                "accent-soft": "#14231c",
+                "accent-hover": "#bbf7d0",
+                "accent-text": "#86efac",
+                "now-line": "#6ee7b7"
+            }
+        },
+        {
+            "id": "forest",
+            "label": "Verde bosque",
+            "colors": {
+                "accent": "#4ade80",
+                "accent-soft": "#052e16",
+                "accent-hover": "#86efac",
+                "accent-text": "#4ade80",
+                "now-line": "#22c55e"
+            }
+        },
+        {
+            "id": "lime",
+            "label": "Lima",
+            "colors": {
+                "accent": "#a3e635",
+                "accent-soft": "#1a2405",
+                "accent-hover": "#bef264",
+                "accent-text": "#a3e635",
+                "now-line": "#84cc16"
+            }
+        },
+        {
+            "id": "cyan",
+            "label": "Cian",
+            "colors": {
+                "accent": "#22d3ee",
+                "accent-soft": "#0a2030",
+                "accent-hover": "#67e8f9",
+                "accent-text": "#22d3ee",
+                "now-line": "#06b6d4"
+            }
+        },
+        {
+            "id": "sky",
+            "label": "Cielo",
+            "colors": {
+                "accent": "#38bdf8",
+                "accent-soft": "#0c2030",
+                "accent-hover": "#7dd3fc",
+                "accent-text": "#38bdf8",
+                "now-line": "#0ea5e9"
+            }
+        },
+        {
+            "id": "blue",
+            "label": "Azul",
+            "colors": {
+                "accent": "#60a5fa",
+                "accent-soft": "#1a2440",
+                "accent-hover": "#93c5fd",
+                "accent-text": "#60a5fa",
+                "now-line": "#818cf8"
+            }
+        },
+        {
+            "id": "indigo",
+            "label": "Índigo",
+            "colors": {
+                "accent": "#818cf8",
+                "accent-soft": "#1e1a3a",
+                "accent-hover": "#a5b4fc",
+                "accent-text": "#818cf8",
+                "now-line": "#6366f1"
+            }
+        },
+        {
+            "id": "violet",
+            "label": "Violeta",
+            "colors": {
+                "accent": "#a78bfa",
+                "accent-soft": "#221a3a",
+                "accent-hover": "#c4b5fd",
+                "accent-text": "#a78bfa",
+                "now-line": "#8b5cf6"
+            }
+        },
+        {
+            "id": "purple",
+            "label": "Morado",
+            "colors": {
+                "accent": "#c084fc",
+                "accent-soft": "#2a1045",
+                "accent-hover": "#d8b4fe",
+                "accent-text": "#c084fc",
+                "now-line": "#a855f7"
+            }
+        },
+        {
+            "id": "fuchsia",
+            "label": "Fucsia",
+            "colors": {
+                "accent": "#e879f9",
+                "accent-soft": "#30103a",
+                "accent-hover": "#f0abfc",
+                "accent-text": "#e879f9",
+                "now-line": "#d946ef"
+            }
+        },
+        {
+            "id": "rose",
+            "label": "Rosa",
+            "colors": {
+                "accent": "#fb7185",
+                "accent-soft": "#2e1a24",
+                "accent-hover": "#fda4af",
+                "accent-text": "#fb7185",
+                "now-line": "#f472b6"
+            }
+        },
+        {
+            "id": "crimson",
+            "label": "Carmesí",
+            "colors": {
+                "accent": "#fca5a5",
+                "accent-soft": "#3a0a0a",
+                "accent-hover": "#fecaca",
+                "accent-text": "#fca5a5",
+                "now-line": "#f87171"
+            }
+        },
+        {
+            "id": "orange",
+            "label": "Naranja",
+            "colors": {
+                "accent": "#fb923c",
+                "accent-soft": "#2a1a0a",
+                "accent-hover": "#fdba74",
+                "accent-text": "#fb923c",
+                "now-line": "#f97316"
+            }
+        },
+        {
+            "id": "amber",
+            "label": "Ámbar",
+            "colors": {
+                "accent": "#fbbf24",
+                "accent-soft": "#2a1f08",
+                "accent-hover": "#fcd34d",
+                "accent-text": "#fbbf24",
+                "now-line": "#f59e0b"
+            }
+        },
+        {
+            "id": "yellow",
+            "label": "Amarillo dorado",
+            "colors": {
+                "accent": "#facc15",
+                "accent-soft": "#27200a",
+                "accent-hover": "#fde047",
+                "accent-text": "#facc15",
+                "now-line": "#eab308"
+            }
+        },
+        {
+            "id": "slate",
+            "label": "Pizarra",
+            "colors": {
+                "accent": "#94a3b8",
+                "accent-soft": "#1e2533",
+                "accent-hover": "#cbd5e1",
+                "accent-text": "#94a3b8",
+                "now-line": "#64748b"
+            }
+        },
+        {
+            "id": "stone",
+            "label": "Piedra",
+            "colors": {
+                "accent": "#a8a29e",
+                "accent-soft": "#242120",
+                "accent-hover": "#d6d3d1",
+                "accent-text": "#a8a29e",
+                "now-line": "#78716c"
+            }
+        },
+        {
+            "id": "zinc",
+            "label": "Zinc",
+            "colors": {
+                "accent": "#a1a1aa",
+                "accent-soft": "#27272a",
+                "accent-hover": "#d4d4d8",
+                "accent-text": "#a1a1aa",
+                "now-line": "#71717a"
+            }
+        },
+        {
+            "id": "ice",
+            "label": "Hielo",
+            "colors": {
+                "accent": "#7dd3fc",
+                "accent-soft": "#082030",
+                "accent-hover": "#bae6fd",
+                "accent-text": "#7dd3fc",
+                "now-line": "#38bdf8"
+            }
+        }
+    ]
+}
